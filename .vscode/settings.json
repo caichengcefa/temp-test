@@ -1,3 +1,36 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/3.38.3"
+  "dart.flutterSdkPath": ".fvm/versions/3.38.3",
+  // --- Dart/Flutter 特定设置 ---
+  "[dart]": {
+    // 保存时自动格式化 (必须)
+    "editor.formatOnSave": true,
+    // 输入时自动格式化
+    "editor.formatOnType": true,
+    // 80字符参考线 (Flutter 官方规范)
+    "editor.rulers": [80],
+    // 禁用基于单词的建议，专注于代码智能提示
+    "editor.wordBasedSuggestions": "off",
+    // 优先显示主要建议
+    "editor.suggestSelection": "first",
+    // 防止代码片段阻挡快速建议
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+  },
+
+  // --- 自动化修复 ---
+  "editor.codeActionsOnSave": {
+    // 保存时自动修复所有问题 (如自动添加 const,移除未使用的引用)
+    "source.fixAll": "explicit" 
+  },
+
+  // --- 界面与辅助 ---
+  // 在树状图中显示文件指引线
+  "workbench.tree.indent": 15,
+  "workbench.tree.renderIndentGuides": "always",
+  // 括号颜色对齐 (防止嵌套地狱迷路)
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  
+  // --- Flutter 特定 ---
+  // 保存时热重载 (默认通常开启，显式声明以防万一)
+  "dart.flutterHotReloadOnSave": "all"
 }
