@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo 12321',
+      title: 'Flutter Demo',
       theme: ThemeData(
         // This is the theme of your application.
         //
@@ -39,9 +39,6 @@ class MyApp extends StatelessWidget {
   }
 }
 
-
-
-
 class MyHomePage extends StatelessWidget {
   const MyHomePage({super.key});
 
@@ -49,7 +46,35 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: '科技登录界面',
-      theme: ThemeData.dark(), // 使用深色主题作为基础
+      theme: ThemeData.dark().copyWith(
+        // 🎯 1. 覆盖原有的 Primary Color
+        primaryColor: Colors.purple,
+
+        // 🎯 2. 覆盖颜色方案 (ColorScheme) 中的特定颜色
+        colorScheme:
+            ColorScheme.fromSwatch(
+              primarySwatch: Colors.purple, // 主色调
+              brightness: Brightness.dark, // 必须保持深色模式
+            ).copyWith(
+              // 覆盖深色主题默认的次要颜色 (secondary/accent color)
+              secondary: Colors.redAccent,
+              // 覆盖深色主题默认的背景色（例如让背景更黑）
+              surface: Colors.black,
+            ),
+
+        // 🎯 3. 覆盖组件级别的主题（例如：AppBar 或 Card）
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.black, // 使 AppBar 颜色更深
+          elevation: 0, // 移除 AppBar 阴影
+        ),
+
+        // 🎯 4. 覆盖输入框的主题
+        inputDecorationTheme: const InputDecorationTheme(
+          // 保持深色主题的背景，但修改聚焦时的颜色
+          errorStyle: TextStyle(color: Colors.green, fontSize: 16),
+          focusedBorder: OutlineInputBorder(borderSide: BorderSide(color: Colors.pink, width: 2)),
+        ),
+      ), // 使用深色主题作为基础
       home: const LoginPage(),
     );
   }
@@ -64,7 +89,7 @@ class LoginPage extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          image: DecorationImage(image: AssetImage('images/login_bj@2x.png'),fit: BoxFit.cover ),
+          image: DecorationImage(image: AssetImage('images/login_bj@2x.png'), fit: BoxFit.cover),
           // gradient: LinearGradient(
           //   begin: Alignment.topCenter,
           //   end: Alignment.bottomCenter,
@@ -77,13 +102,8 @@ class LoginPage extends StatelessWidget {
         child: const Stack(
           children: [
             // 1. 顶部导航/语言切换 (模拟)
-            Positioned(
-              top: 40,
-              left: 30,
-              right: 30,
-              child: TopBar(),
-            ),
-            
+            Positioned(top: 40, left: 30, right: 30, child: TopBar()),
+
             // 2. 核心内容区域：左侧插图 + 右侧登录卡片
             Center(
               child: Row(
@@ -91,14 +111,14 @@ class LoginPage extends StatelessWidget {
                 children: [
                   // 左侧服务器插图 (使用占位符，实际应替换为Image或Lottie动画)
                   // ServerIllustrationPlaceholder(),
-                  
+
                   // 右侧登录卡片
-                  SizedBox(width: 380), // 间距
+                  // SizedBox(width: 380), // 间距
                   LoginCard(),
                 ],
               ),
             ),
-            
+
             // 3. 底部粒子/光效模拟 (使用简单的圆点和阴影模拟)
             // BottomEffectPlaceholder(),
           ],
@@ -107,4 +127,3 @@ class LoginPage extends StatelessWidget {
     );
   }
 }
-

@@ -1,0 +1,40 @@
+{
+    // 自动格式化相关
+    "editor.formatOnSave": true, // 保存时自动格式化
+    "editor.defaultFormatter": "Dart-Code.dart-code", // 默认使用 Dart 格式化工具
+    "dart.lineLength": 120, // 格式化时每行最大长度（默认 80）
+  
+    // // 热重载/热重启相关
+    "dart.hotReloadOnSave": "allIfDirty",
+    "dart.flutterHotReloadOnSave": "allIfDirty",
+
+    // 代码提示与补全
+    "editor.suggestOnTriggerCharacters": true, // 触发字符（如 . ）时显示提示
+    // "dart.autoImportCompletions": true, // 从未导入的库中提示补全
+    "editor.quickSuggestions": {
+        "other": true,
+        "comments": false,
+        "strings": false
+    },
+    // 代码检查与高亮
+    "dart.showTodos": true, // 高亮 TODO 注释
+    "dart.analysisExcludedFolders": [ // 排除分析的目录（如构建产物）
+        "build/",
+        ".dart_tool/",
+        "ios/",
+        "android/"
+    ],
+    // 调试配置
+    // "dart.debugExternalLibraries": false, // 不调试外部库代码
+    // "dart.debugSdkLibraries": false, // 不调试 SDK 代码
+    // "flutter.debugConsoleColumnWidth": 120, // 调试控制台宽度
+    "files.exclude": { // 资源管理器中隐藏不必要的文件
+        "**/.git": true,
+        "**/.svn": true,
+        "**/.hg": true,
+        "**/CVS": true,
+        "**/.DS_Store": true,
+        "**/.dart_tool": true,
+        "**/build": true
+    },
+}
