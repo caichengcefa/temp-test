@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
 import 'package:flutter_application_1/services/auth_service.dart';
+import 'package:get/get.dart';
 
 class LoginCard extends StatefulWidget {
   const LoginCard({super.key});
@@ -31,9 +32,13 @@ class _LoginCardState extends State<LoginCard> {
 
     setState(() => _loading = true);
     try {
-      final result = await AuthService.instance.login(username: username, password: password);
+      final result = await AuthService.instance.login(
+        username: username,
+        password: password,
+      );
 
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('登录成功: ${result['message'] ?? 'ok'}')));
+      // 登录成功后跳转到 Home 页面（使用 GetX 路由）
+      Get.offNamed('/home', arguments: result);
     } on DioException catch (e) {
       String msg = '请求失败';
       if (e.response != null && e.response?.data != null) {
@@ -41,9 +46,13 @@ class _LoginCardState extends State<LoginCard> {
       } else if (e.message != null) {
         msg = e.message!;
       }
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('登录失败: $msg')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('登录失败: $msg')));
     } catch (e) {
-      ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('登录异常: $e')));
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(SnackBar(content: Text('登录异常: $e')));
     } finally {
       if (mounted) setState(() => _loading = false);
     }
@@ -62,7 +71,13 @@ class _LoginCardState extends State<LoginCard> {
       decoration: BoxDecoration(
         color: const Color(0xFF152A55).withValues(alpha: 0.8), // 略微透明的深蓝色背景
         borderRadius: BorderRadius.circular(16),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: 0.3), blurRadius: 30, spreadRadius: 5)],
+        boxShadow: [
+          BoxShadow(
+            color: Colors.black.withValues(alpha: 0.3),
+            blurRadius: 30,
+            spreadRadius: 5,
+          ),
+        ],
       ),
       child: Form(
         key: _formKey,
@@ -73,13 +88,21 @@ class _LoginCardState extends State<LoginCard> {
             // 标题：登录
             const Text(
               '登录',
-              style: TextStyle(fontSize: 28, fontWeight: FontWeight.bold, color: Colors.white),
+              style: TextStyle(
+                fontSize: 28,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+              ),
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: 30),
 
             // 输入框：用户名
-            _buildLoginInputField(controller: _usernameController, hintText: '请输入用户名', icon: Icons.person_outline),
+            _buildLoginInputField(
+              controller: _usernameController,
+              hintText: '请输入用户名',
+              icon: Icons.person_outline,
+            ),
             const SizedBox(height: 20),
 
             // 输入框：密码
@@ -99,10 +122,14 @@ class _LoginCardState extends State<LoginCard> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF0096FF), // 亮蓝色
                   foregroundColor: Colors.white,
-                  shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8)),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(8),
+                  ),
                   textStyle: const TextStyle(fontSize: 16),
                 ),
-                child: _loading ? const CircularProgressIndicator(color: Colors.white) : const Text('登录'),
+                child: _loading
+                    ? const CircularProgressIndicator(color: Colors.white)
+                    : const Text('登录'),
               ),
             ),
           ],
@@ -128,8 +155,14 @@ class _LoginCardState extends State<LoginCard> {
         filled: true,
         fillColor: Colors.black.withValues(alpha: 0.3), // 输入框内部的深色背景
         hoverColor: Colors.transparent,
-        contentPadding: const EdgeInsets.symmetric(vertical: 15, horizontal: 15),
-        border: OutlineInputBorder(borderRadius: BorderRadius.circular(8), borderSide: BorderSide.none),
+        contentPadding: const EdgeInsets.symmetric(
+          vertical: 15,
+          horizontal: 15,
+        ),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide.none,
+        ),
         prefixIcon: Icon(icon, color: Colors.white54),
       ),
       // 字段验证逻辑
