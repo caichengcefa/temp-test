@@ -1,8 +1,8 @@
 import 'package:get/get.dart';
-import '../pages/home/bindings/home_binding.dart';
-import '../pages/home/views/home_view.dart';
-import '../pages/login/bindings/login_binding.dart';
-import '../pages/login/views/login_view.dart';
+import '../pages/home/home_binding.dart';
+import '../pages/home/home_view.dart';
+import '../pages/login/login_binding.dart';
+import '../pages/login/login_view.dart';
 
 part 'app_routes.dart';
 
