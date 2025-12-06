@@ -10,10 +10,10 @@ class TopBar extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         // 左上角 Logo 和标题
-        const Row(
+        Row(
           children: [
-            // Icon(Icons.monitor_heart, color: Colors.blueAccent, size: 30),
-            AssetImage('images/logo_img@2x.png'),
+            Image.asset('images/logo_img@2x.png',width: 36,height: 36, ),
+            SizedBox(width: 12,),
             Text(
               '液冷假负载测试平台',
               style: white16BoldTextStyle

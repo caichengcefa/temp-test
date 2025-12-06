@@ -1,3 +1,21 @@
 {
-  "dart.flutterSdkPath": ".fvm/versions/3.38.3"
+  "dart.flutterSdkPath": ".fvm/versions/3.38.3",
+  "[dart]": {
+    "editor.formatOnSave": true,
+    "editor.formatOnType": true,
+    "editor.rulers": [
+      80
+    ],
+    "editor.wordBasedSuggestions": "off",
+    "editor.suggestSelection": "first",
+    "editor.suggest.snippetsPreventQuickSuggestions": false
+  },
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit"
+  },
+  "workbench.tree.indent": 15,
+  "workbench.tree.renderIndentGuides": "always",
+  "editor.bracketPairColorization.enabled": true,
+  "editor.guides.bracketPairs": true,
+  "dart.flutterHotReloadOnSave": "all"
 }
