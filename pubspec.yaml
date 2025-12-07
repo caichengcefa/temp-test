@@ -34,20 +34,52 @@ dependencies:
   # The following adds the Cupertino Icons font to your application.
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.8
-  dio: ^5.3.2
+  dio: ^5.9.0
   get: ^4.6.5
+  json_annotation: ^4.9.0
+  retrofit: ^4.9.0
+  flutter_gen: ^5.12.0
+  shared_preferences: ^2.5.3
+
+
+
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
+  analyzer: ^8.2.0
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
   # activated in the `analysis_options.yaml` file located at the root of your
   # package. See that file for information about deactivating specific lint
   # rules and activating additional ones.
   flutter_lints: ^5.0.0
+  build_runner: ^2.10.0
+  retrofit_generator: ^10.2.0
+  json_serializable: ^6.10.0
+  flutter_gen_runner: ^5.12.0
+  
 
+flutter_gen:
+   # 1. 输出文件路径 (默认: lib/gen/assets.gen.dart)
+  output: lib/gen/ 
+  
+  # # 2. 生成类的名称 (默认: R)
+  # line_length: 80 
+  
+  # # 3. 启用/禁用特定类型资源的生成
+  # integrations:
+  #   flutter_svg: true    # 如果使用 svg 包，启用 SVG 支持
+  #   flare: false
+  #   lottie: false
+  
+  # # 4. 资源配置
+  # assets:
+  #   # 启用 Images 的生成
+  #   enabled: true
+    # 仅生成指定文件夹下的资源 (可选)
+    # outputs:
+    #   class_name: AssetImages 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
 
@@ -59,7 +91,7 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - images/
+    - assets/images/
   # To add assets to your application, add an assets section, like this:
   # assets:
   #   - images/a_dot_burr.jpeg

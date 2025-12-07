@@ -1,0 +1,8 @@
+{
+  "app_name": "My Awesome App",
+  "version_code": 10,
+  "features": [
+    "dark_mode",
+    "notifications"
+  ]
+}

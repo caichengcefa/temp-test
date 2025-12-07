@@ -1,8 +1,12 @@
 import 'package:get/get.dart';
-import '../pages/home/home_binding.dart';
-import '../pages/home/home_view.dart';
-import '../pages/login/login_binding.dart';
-import '../pages/login/login_view.dart';
+
+import '../modules/home/bindings/home_binding.dart';
+import '../modules/home/views/home_view.dart';
+import '../modules/login/bindings/login_binding.dart';
+import '../modules/login/views/login_view.dart';
+import '../modules/other/bindings/other_binding.dart';
+import '../modules/other/views/other_view.dart';
+import './auth_middleware.dart';
 
 part 'app_routes.dart';
 
@@ -21,6 +25,13 @@ class AppPages {
       name: _Paths.HOME,
       page: () => const HomeView(),
       binding: HomeBinding(),
+      middlewares: [AuthMiddleware()],
+    ),
+    GetPage(
+      name: _Paths.OTHER,
+      page: () => const OtherView(),
+      binding: OtherBinding(),
+      middlewares: [AuthMiddleware()],
     ),
   ];
 }

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:dio/dio.dart';
-import 'package:flutter_application_1/app/core/widgets/m_text_form_field.dart';
-import 'package:flutter_application_1/app/pages/login/login_card_controller.dart';
-import 'package:flutter_application_1/services/auth_service.dart';
+import 'package:flutter_application_1/app/core/widgets/text_form_field.dart';
+import 'package:flutter_application_1/app/modules/login/controllers/login_card_controller.dart';
+import 'package:flutter_application_1/app/services/request.dart';
 import 'package:get/get.dart';
 
 class LoginCard extends StatelessWidget {
@@ -13,7 +13,7 @@ class LoginCard extends StatelessWidget {
     // 卡片尺寸与风格
     const double cardWidth = 360;
     const double cardPadding = 40;
-    final LoginCardController c = Get.find<LoginCardController>();
+    final LoginCardController controller = Get.find<LoginCardController>();
 
     return Container(
       width: cardWidth,
@@ -51,8 +51,8 @@ class LoginCard extends StatelessWidget {
             () => MTextFormField(
               icon: Icons.person_outline,
               hintText: '请输入用户名',
-              errorText: c.usernameError.value,
-              onChanged: (value) => c.username.value = value,
+              errorText: controller.usernameError.value,
+              onChanged: (value) => controller.username.value = value,
             ),
           ),
           const SizedBox(height: 20),
@@ -61,18 +61,19 @@ class LoginCard extends StatelessWidget {
               isPassword: true,
               icon: Icons.lock_outline,
               hintText: '请输入密码',
-              errorText: c.passwordError.value,
-              onChanged: (value) => c.password.value = value,
+              errorText: controller.passwordError.value,
+              onChanged: (value) => controller.password.value = value,
             ),
           ),
           const SizedBox(height: 40),
-
           // 按钮：登录
           Obx(
             () => SizedBox(
               height: 50,
               child: ElevatedButton(
-                onPressed: c.loading.value ? null : c.submitForm,
+                onPressed: controller.loading.value
+                    ? null
+                    : controller.submitForm,
                 style: ElevatedButton.styleFrom(
                   backgroundColor: const Color(0xFF0096FF), // 亮蓝色
                   foregroundColor: Colors.white,
@@ -81,7 +82,7 @@ class LoginCard extends StatelessWidget {
                   ),
                   textStyle: const TextStyle(fontSize: 16),
                 ),
-                child: c.loading.value
+                child: controller.loading.value
                     ? const CircularProgressIndicator(color: Colors.white)
                     : const Text('登录'),
               ),
